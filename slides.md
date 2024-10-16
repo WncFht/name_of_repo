@@ -61,21 +61,6 @@ graph TD
 
 
 ---
-level: 1
-layout: center
----
-
-# Flashback
-
-<v-clicks>
-
-1. Onions
-2. Yelnats carried Zeroni up the hill.
-3.  Mary Lou(the donkey & the ship)
-4. Girl Scout
-
-</v-clicks>
----
 layout: center
 level: 1
 ---
@@ -112,6 +97,24 @@ graph LR
     A[container of love] -->|over 100 years| B[innocence and beauty]
 ```
 </div>
+
+---
+level: 1
+layout: center
+---
+
+# Flashback
+
+<v-clicks>
+
+1. Onions
+2. Yelnats carried Zeroni up the hill.
+3.  Mary Lou(the donkey & the ship)
+4. Girl Scout
+
+</v-clicks>
+
+
 ---
 level: 1
 layout: center
@@ -130,10 +133,14 @@ layout: center
 
 *true friendship transcends barriers*
 
+<v-clicks>
+
 - Teaching literacy in exchange for digging holes
 - Risking life to rescue Zero
 - Mutual care and sacrifice during the exile
 - Taking Zero to freedom 
+
+</v-clicks>
 
 ---
 level: 2
@@ -144,10 +151,13 @@ layout: center
 
 *Reshape, renew and reborn*
 
+<v-clicks>
+
 - Once an overweight boy suffering from bullying and teases
 - Building up muscle and resilience through digging holes
 - Demonstrating commitment by taking the blame for stealing sunflower seeds
 
+</v-clicks>
 ---
 level: 2
 layout: center
@@ -155,34 +165,42 @@ layout: center
 
 # Theme 3: Denstiny vs Choice
 
-<div v-click>
 
 ## Stanley Yelnats - From Curse to Control
 
-- succumb to the family curse ?
-- challenge it and strive for <span v-mark.circle.orange="2">redemption</span> !
+<v-clicks>
 
-</div>
+- succumb to the family curse ?
+- challenge it and strive for redemption !
+
+</v-clicks>
 <br>
 <br>
-<div v-click = '3'>
+
 
 ## Zero - From Zero to Hero
 
+<v-clicks>
+
 - often overlooked and underestimated?
-- help Stanley whcih lay the foundation for the friendship!
-- bring the <span v-mark.red="4">turing</span> point of the story
-</div>
+- help Stanley which lay the foundation for the friendship!
+- bring the turing point of the story
+
+</v-clicks>
+
 ---
 layout: center
 ---
 
 # Influence
 
+<v-clicks>
+
 - Our world and childhood with ambivalences 
 - What a happy ending means to children
 - Adults’ shadow from the perspective of races
 
+</v-clicks>
 ---
 layout: center
 ---
