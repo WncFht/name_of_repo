@@ -26,7 +26,7 @@ layout: center
 <div v-click>   
 
 - Holes was truly <span v-mark.red="3">groundbreaking</span>. --CARL HIAASEN(NY 
-Times bestselling author):
+Times bestselling author)
 
 </div>
 
@@ -56,7 +56,6 @@ graph TD
     subgraph long long ago
     KB1[Katherine Barlow] --> KB2[Kate Barlow]
     KB1 <-->|love| S[Sam]
-    KB2 -->|killed| S
     end
 ```
 
@@ -184,6 +183,16 @@ layout: center
 - What a happy ending means to children
 - Adults’ shadow from the perspective of races
 
+---
+layout: center
+---
+
+# Reference
+
+- Sachar, Louis. Holes. New York, Farrar, Straus And Giroux, 20 Aug. 1998.
+- Trites, Roberta Seelinger. “The Harry Potter Novels as a Test Case for Adolescent Literature.” Style, vol. 35, no. 3, 2001, pp. 472–85.
+- Enciso, Patricia, et al. “Children’s Literature: Standing in the Shadow of Adults.” Reading Research Quarterly, vol. 45, no. 2, 6 Apr. 2010, pp. 252–263, https://doi.org/10.1598/rrq.45.2.5.
+- Nodelman, Perry. The Hidden Adult : Defining Children’s Literature. Baltimore, Johns Hopkins University Press, 2008.
 
 ---
 class: text-center

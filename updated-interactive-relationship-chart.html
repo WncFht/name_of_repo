@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Updated Interactive Character Relationship Chart</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+        .links line {
+            stroke: #999;
+            stroke-opacity: 0.6;
+        }
+        .nodes circle {
+            stroke: #fff;
+            stroke-width: 1.5px;
+        }
+        .node-labels {
+            font-family: sans-serif;
+            font-size: 10px;
+        }
+        .link-labels {
+            font-family: sans-serif;
+            font-size: 8px;
+            fill: #999;
+        }
+    </style>
+</head>
+<body>
+    <svg width="960" height="600"></svg>
+    <script>
+        // 定义节点和连接
+        const nodes = [
+            { id: "MZ", name: "Madam Zeroni" },
+            { id: "EY", name: "Elya Yelnats" },
+            { id: "MY", name: "Myra" },
+            { id: "IG", name: "Igor" },
+            { id: "AN", name: "a nurse" },
+            { id: "SY1", name: "Stanley Yelnats I" },
+            { id: "SY2", name: "Stanley Yelnats II" },
+            { id: "SY4", name: "Stanley Yelnats IV" },
+            { id: "HZ", name: "Hector Zeroni zero" },
+            { id: "KB1", name: "Katherine Barlow" },
+            { id: "KB2", name: "Kate Barlow" },
+            { id: "S", name: "Sam" }
+        ];
+
+        const links = [
+            { source: "MZ", target: "EY", label: "help" },
+            { source: "EY", target: "MZ", label: "piglets" },
+            { source: "EY", target: "MY", label: "love" },
+            { source: "EY", target: "SY1", label: "son" },
+            { source: "IG", target: "MY", label: "love" },
+            { source: "AN", target: "SY1", label: "saved" },
+            { source: "SY1", target: "SY2", label: "son" },
+            { source: "SY2", target: "SY4", label: "descendant" },
+            { source: "MZ", target: "HZ", label: "descendant" },
+            { source: "KB2", target: "SY1", label: "robbed" },
+            { source: "HZ", target: "SY4", label: "friend" },
+            { source: "SY4", target: "HZ", label: "friend" },
+            { source: "KB1", target: "S", label: "love" },
+            { source: "S", target: "KB1", label: "love" },
+            { source: "S", target: "KB2", label: "got killed" },
+            { source: "KB2", target: "KB1", label: "became" }
+        ];
+
+        // 设置SVG
+        const svg = d3.select("svg"),
+            width = +svg.attr("width"),
+            height = +svg.attr("height");
+
+        // 创建力导向图，增加边界力
+        const simulation = d3.forceSimulation(nodes)
+            .force("link", d3.forceLink(links).id(d => d.id).distance(100))
+            .force("charge", d3.forceManyBody().strength(-300))
+            .force("center", d3.forceCenter(width / 2, height / 2))
+            .force("boundary", boundaryForce);
+
+        // 绘制连接线
+        const link = svg.append("g")
+            .attr("class", "links")
+          .selectAll("line")
+          .data(links)
+          .enter().append("line");
+
+        // 绘制节点
+        const node = svg.append("g")
+            .attr("class", "nodes")
+          .selectAll("circle")
+          .data(nodes)
+          .enter().append("circle")
+            .attr("r", 5)
+            .call(d3.drag()
+                .on("start", dragstarted)
+                .on("drag", dragged)
+                .on("end", dragended));
+
+        // 添加节点标签
+        const nodeLabel = svg.append("g")
+            .attr("class", "node-labels")
+          .selectAll("text")
+          .data(nodes)
+          .enter().append("text")
+            .text(d => d.name)
+            .attr("dx", 12)
+            .attr("dy", ".35em");
+
+        // 添加连接标签
+        const linkLabel = svg.append("g")
+            .attr("class", "link-labels")
+          .selectAll("text")
+          .data(links)
+          .enter().append("text")
+            .text(d => d.label)
+            .attr("text-anchor", "middle");
+
+        // 更新图表位置
+        simulation.on("tick", () => {
+            link
+                .attr("x1", d => d.source.x)
+                .attr("y1", d => d.source.y)
+                .attr("x2", d => d.target.x)
+                .attr("y2", d => d.target.y);
+
+            node
+                .attr("cx", d => d.x)
+                .attr("cy", d => d.y);
+
+            nodeLabel
+                .attr("x", d => d.x)
+                .attr("y", d => d.y);
+
+            linkLabel
+                .attr("x", d => (d.source.x + d.target.x) / 2)
+                .attr("y", d => (d.source.y + d.target.y) / 2);
+        });
+
+        // 边界力函数
+        function boundaryForce() {
+            const padding = 20;
+            for (let node of nodes) {
+                node.x = Math.max(padding, Math.min(width - padding, node.x));
+                node.y = Math.max(padding, Math.min(height - padding, node.y));
+            }
+        }
+
+        // 拖拽函数
+        function dragstarted(event, d) {
+          if (!event.active) simulation.alphaTarget(0.3).restart();
+          d.fx = d.x;
+          d.fy = d.y;
+        }
+
+        function dragged(event, d) {
+          d.fx = Math.max(0, Math.min(width, event.x));
+          d.fy = Math.max(0, Math.min(height, event.y));
+        }
+
+        function dragended(event, d) {
+          if (!event.active) simulation.alphaTarget(0);
+          d.fx = null;
+          d.fy = null;
+        }
+    </script>
+</body>
+</html>
